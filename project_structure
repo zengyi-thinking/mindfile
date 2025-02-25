@@ -1,0 +1,47 @@
+mindfile/
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   │   ├── endpoints/
+│   │   │   │   ├── mindmap.py        # 思维导图相关接口
+│   │   │   │   ├── search.py         # 搜索相关接口
+│   │   │   │   ├── materials.py      # 资料管理接口
+│   │   │   │   ├── forum.py          # 论坛相关接口
+│   │   │   │   └── users.py          # 用户相关接口
+│   │   │   └── deps.py               # 依赖注入
+│   │   ├── core/
+│   │   │   ├── config.py             # 配置管理
+│   │   │   ├── security.py           # 安全相关
+│   │   │   └── events.py             # 事件处理
+│   │   ├── db/
+│   │   │   ├── base.py               # 数据库基类
+│   │   │   ├── session.py            # 数据库会话
+│   │   │   └── init_db.py            # 数据库初始化
+│   │   ├── models/                   # 数据库模型
+│   │   │   ├── user.py
+│   │   │   ├── mindmap.py
+│   │   │   ├── material.py
+│   │   │   └── forum.py
+│   │   ├── schemas/                  # Pydantic模型
+│   │   │   ├── user.py
+│   │   │   ├── mindmap.py
+│   │   │   ├── material.py
+│   │   │   └── forum.py
+│   │   ├── services/                 # 业务逻辑层
+│   │   │   ├── mindmap.py
+│   │   │   ├── search.py
+│   │   │   ├── material.py
+│   │   │   └── user.py
+│   │   └── utils/                    # 工具函数
+│   │       ├── search_helper.py
+│   │       └── file_handler.py
+│   ├── alembic/                      # 数据库迁移
+│   │   └── versions/
+│   ├── tests/                        # 测试文件
+│   │   ├── api/
+│   │   ├── services/
+│   │   └── conftest.py
+│   ├── main.py                       # 应用入口
+│   ├── requirements.txt              # 依赖管理
+│   └── docker-compose.yml            # Docker配置
+└── frontend/                         # 前端目录 
