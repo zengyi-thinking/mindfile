@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Table
+import datetime
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Table, Boolean
 from sqlalchemy.orm import relationship
-from app.db.base import Base, TimestampMixin
+from backend.app.db.base import Base, TimestampMixin
 
 # 思维导图和标签的多对多关系表
 mindmap_tag = Table(
@@ -14,14 +15,16 @@ class MindMap(Base, TimestampMixin):
     __tablename__ = "mindmaps"
 
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, index=True, nullable=False)
-    description = Column(String, nullable=True)
-    owner_id = Column(Integer, ForeignKey("users.id"))
+    title = Column(String(100), nullable=False)
+    description = Column(String(200), nullable=True)
+    content = Column(Text, nullable=True)  # 存储思维导图的JSON结构
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
     
-    # 存储思维导图数据结构
-    data = Column(String, nullable=False)  # JSON格式存储
+    # 外键关联
+    user_id = Column(Integer, ForeignKey("users.id"))
     
     # 关系
-    owner = relationship("User", back_populates="mindmaps")
+    user = relationship("User", back_populates="mindmaps")
     tags = relationship("Tag", secondary=mindmap_tag, back_populates="mindmaps")
     materials = relationship("Material", back_populates="mindmap") 

@@ -1,4 +1,3 @@
-mindfile/
 ├── backend/
 │   ├── app/
 │   │   ├── api/
@@ -43,42 +42,4 @@ mindfile/
 │   │   └── conftest.py
 │   ├── main.py                       # 应用入口
 │   ├── requirements.txt              # 依赖管理
-│   └── docker-compose.yml            # Docker配置
-└── frontend/
-    ├── public/
-    │   ├── index.html
-    │   └── favicon.ico
-    ├── src/
-    │   ├── assets/
-    │   │   ├── css/
-    │   │   │   ├── main.css
-    │   │   │   └── components.css
-    │   │   └── images/
-    │   ├── components/
-    │   │   ├── Header.vue
-    │   │   ├── Sidebar.vue
-    │   │   ├── MindMap.vue
-    │   │   ├── MaterialCard.vue
-    │   │   ├── SearchBar.vue
-    │   │   ├── TagSelector.vue
-    │   │   └── FileUploader.vue
-    │   ├── views/
-    │   │   ├── Home.vue
-    │   │   ├── MindMapView.vue
-    │   │   ├── SearchView.vue
-    │   │   ├── MaterialView.vue
-    │   │   ├── ForumView.vue
-    │   │   └── ProfileView.vue
-    │   ├── services/
-    │   │   ├── api.js
-    │   │   ├── mindmap.js
-    │   │   ├── search.js
-    │   │   └── auth.js
-    │   ├── router/
-    │   │   └── index.js
-    │   ├── store/
-    │   │   └── index.js
-    │   ├── App.vue
-    │   └── main.js
-    ├── package.json
-    └── vue.config.js                        # 前端目录 
+│————── docker-compose.yml            # Docker配置

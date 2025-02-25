@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
-from app.db.base import Base, TimestampMixin
+from backend.app.db.base import Base, TimestampMixin
 
 class User(Base, TimestampMixin):
     __tablename__ = "users"
@@ -15,8 +15,8 @@ class User(Base, TimestampMixin):
 
     # 关系
     materials = relationship("Material", back_populates="owner")
-    mindmaps = relationship("MindMap", back_populates="owner")
-    posts = relationship("Post", back_populates="author")
-    comments = relationship("Comment", back_populates="author")
+    mindmaps = relationship("MindMap", back_populates="user", cascade="all, delete-orphan")
+    posts = relationship("Post", back_populates="owner")
+    comments = relationship("Comment", back_populates="owner")
     favorites = relationship("Favorite", back_populates="user")
     search_histories = relationship("SearchHistory", back_populates="user") 

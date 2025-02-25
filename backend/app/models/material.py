@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Table, Boolean
 from sqlalchemy.orm import relationship
-from app.db.base import Base, TimestampMixin
+from backend.app.db.base import Base, TimestampMixin
 
 # 资料和标签的多对多关系表
 material_tag = Table(
@@ -30,5 +30,10 @@ class Material(Base, TimestampMixin):
     owner = relationship("User", back_populates="materials")
     mindmap = relationship("MindMap", back_populates="materials")
     tags = relationship("Tag", secondary=material_tag, back_populates="materials")
-    comments = relationship("Comment", back_populates="material")
-    favorites = relationship("Favorite", back_populates="material") 
+    favorites = relationship("Favorite", back_populates="material")
+    
+    # 新添加的字段
+    is_public = Column(Boolean, default=False)  # 是否公开
+
+    def __repr__(self):
+        return f"<Material(id={self.id}, title={self.title})>" 

@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Table
 from sqlalchemy.orm import relationship
-from app.db.base import Base, TimestampMixin
+from backend.app.db.base import Base, TimestampMixin
 
 # 标签之间的层级关系
 tag_hierarchy = Table(
