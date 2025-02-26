@@ -5,7 +5,7 @@
     <div class="content-container">
       <div class="page-header">
         <h1>我的思维导图</h1>
-        <button class="btn btn-primary" @click="$router.push('/mindmaps/create')">
+        <button class="btn btn-primary" @click="showCreateModal = true">
           创建新思维导图
         </button>
       </div>
@@ -38,7 +38,47 @@
       </div>
     </div>
     
-
+    <!-- 创建思维导图的模态框 -->
+    <div class="modal" v-if="showCreateModal">
+      <div class="modal-backdrop" @click="showCreateModal = false"></div>
+      <div class="modal-content">
+        <h2>创建新思维导图</h2>
+        
+        <form @submit.prevent="createMindMap">
+          <div class="form-group">
+            <label for="title">标题</label>
+            <input 
+              type="text" 
+              id="title" 
+              v-model="newMindMap.title" 
+              class="form-control" 
+              required 
+              placeholder="请输入标题"
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="description">描述</label>
+            <textarea 
+              id="description" 
+              v-model="newMindMap.description" 
+              class="form-control" 
+              rows="3" 
+              placeholder="请输入描述"
+            ></textarea>
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" @click="showCreateModal = false">
+              取消
+            </button>
+            <button type="submit" class="btn btn-primary" :disabled="createLoading">
+              {{ createLoading ? '创建中...' : '创建' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -90,21 +130,11 @@ export default {
       this.createLoading = true;
       
       try {
-        const response = await api.post('/mindmaps/', {
-          ...this.newMindMap,
-          data: JSON.stringify({
-            id: 'root',
-            name: '中心主题',
-            children: []
-          })
-        });
+        const response = await api.post('/mindmaps/', this.newMindMap);
         
         // 重置表单
         this.newMindMap = { title: '', description: '', data: {} };
         this.showCreateModal = false;
-        
-        // 跳转到编辑页面
-        this.$router.push(`/mindmaps/${response.data.id}`);
         
         // 刷新列表
         this.fetchMindMaps();

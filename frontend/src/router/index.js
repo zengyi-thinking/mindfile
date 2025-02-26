@@ -5,7 +5,6 @@ const LoginView = () => import('../views/LoginView.vue');
 const RegisterView = () => import('../views/RegisterView.vue');
 const DashboardView = () => import('../views/DashboardView.vue');
 const MindMapView = () => import('../views/MindMapView.vue');
-const MindMapCreateView = () => import('../views/MindMapDetailView.vue');
 const MaterialsView = () => import('../views/MaterialsView.vue');
 const UserSettingsView = () => import('../views/UserSettingsView.vue');
 
@@ -39,12 +38,6 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/mindmaps/create',
-    name: 'CreateMindMap',
-    component: MindMapCreateView,
-    meta: { requiresAuth: true }
-  },
-  {
     path: '/materials',
     name: 'Materials',
     component: MaterialsView,
@@ -74,4 +67,4 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-export default router;
+export default router; 
